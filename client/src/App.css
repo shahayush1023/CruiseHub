@@ -1,0 +1,241 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+.a3
+{
+  margin: 0.1875rem 0.625rem 0rem 0.625rem;
+}
+.App {
+  background-color: white;
+}
+
+.l1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  
+}
+
+.l2 {
+  
+  width: 420px;
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.l3 {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.l4 {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: black;
+  font-weight: 800;
+  font-family: cursive;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+.container {
+  margin-top: 200px;
+  }
+
+ .h11
+ {
+  margin-left: 60px;
+ }
+ .food{
+  font-size: large;
+  font-weight: 900;
+   
+  
+ }
+
+ .c1{
+  margin-left: 597px;
+  margin-top: 217px;
+ }
+ .c2{
+  margin-left: 597px;
+  margin-top: 37px;
+ }
+ .c3
+ {
+  margin-left: 12px;
+ }
+ .c4{
+  margin-top: 20px;
+  margin-left: 597px;
+ }
+
+ .c5
+ {
+  margin-left: 219px;
+ }
+ .c6{
+  margin-left:-64px
+ }
+ .tacbox {
+  display:block;
+  padding: 1em;
+  margin: 3.8em;
+  border: 3px solid #ddd;
+  background-color: #eee;
+  max-width: 800px;
+}
+
+input {
+  height: 2em;
+  width: 2em;
+  vertical-align: middle;
+}
+.c8{
+  margin-left: 400px;
+}
+.c9{
+  margin-left: 340px;
+}
+
+.ll1
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 46px;
+}
+
+.ll2
+{
+  margin: 0 auto;
+  max-width: 550px;
+  width: 100%;
+  background: white;
+}
+
+.ll3{
+  margin-bottom: 18px;
+}
+
+.ll4
+{
+    display: block;
+    
+    margin-bottom: 10px;
+}
+.l5{
+  width: 100%;
+}
+
+#j1
+{
+  color:white;
+  background-color: black;
+  border-radius: 2px;
+  width: 20%;
+  margin-left: 12rem;
+}
+.about-section{
+  background: url(https://www.shutterstock.com/image-photo/about-us-company-profile-page-260nw-384835510.jpg) no-repeat left;
+  background-size: 50%;
+  background-color: #fdfdfd;
+  overflow: hidden;
+  padding: 100px 0;
+}
+
+.inner-container{
+  width: 55%;
+  float: right;
+  background-color: #fdfdfd;
+  padding: 150px;
+  
+}
+
+.service{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+@media screen and (max-width:1200px){
+  .inner-container{
+      padding: 80px;
+  }
+}
+
+@media screen and (max-width:1000px){
+  .about-section{
+      background-size: 100%;
+      padding: 100px 40px;
+  }
+  .inner-container{
+      width: 100%;
+  }
+}
+
+@media screen and (max-width:600px){
+  .about-section{
+      
+      padding: 0;
+  }
+  .inner-container{
+      padding: 60px;
+  }
+}
+
+.home
+{
+  margin-left: 50px;
+  
+}
