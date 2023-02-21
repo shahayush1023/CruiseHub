@@ -1,13 +1,16 @@
 const express = require("express");
 const app = express();
 // const usermodel = require('./models/usermodel');
-app.listen(3002);
+app.listen(5000);
 const cookieparser = require('cookie-parser');
+const cors = require("cors");
 
 app.use(cookieparser());
 app.use(express.json());
+
+app.use(cors({ origin: "http://localhost:3000" }));
+
 // app.use(cookieparser());
-// hjhjh
 const userRouter = require('./routers/userrouter');
 const authRouter = require('./routers/authrouter');
 const seatrouter = require('./routers/seatrouter');

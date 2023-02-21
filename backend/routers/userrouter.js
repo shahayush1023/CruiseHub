@@ -4,7 +4,7 @@ const userRouter = express.Router();
 const{getUser,getAllUser,deleteUser,updateUser} = require('../controller/usercontroller');
 const{signup,login,isAuthorised,protectroute,logout,forgetpassword,resetpassword,contactform} = require('../controller/authcontroller');
 //user's options
-app.use(protectroute);
+// app.use(protectroute);
 
 userRouter
 .route('/:id')
@@ -37,10 +37,10 @@ userRouter
 
 
 
-//user profile
-userRouter
-.route('/userProfile')
-.get(getUser)
+// //user profile
+// userRouter
+// .route('/userProfile')
+// .get(getUser)
 
 
 //admin specific

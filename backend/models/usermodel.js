@@ -4,52 +4,43 @@ const emailvalid = require("email-validator");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 
-const dblink="mongodb+srv://apsadmin:shah2002@cluster0.b5a9kkd.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(dblink)
-.then(function(db){
-    console.log('db connected');
+const dblink =
+  "mongodb+srv://apsadmin:shah2002@cluster0.b5a9kkd.mongodb.net/?retryWrites=true&w=majority";
+mongoose
+  .connect(dblink)
+  .then(function (db) {
+    console.log("db connected");
     // console.log(db);
-})
-.catch(function(err){
+  })
+  .catch(function (err) {
     console.log(err);
-});
+  });
 
 const userschema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: function () {
+      return emailvalid.validate(this.email);
+    },
+  },
+  password: {
+    type: String,
+    required: true,
+    minLength: 8,
+  },
 
-    name:{
-           type:String,
-           required:true
-       },
-    email:{
-        type:String,
-        required:true,
-        unique:true,
-        validate:function(){
-            return emailvalid.validate(this.email);
-        }
-    },
-    password:{
-        type:String,
-        required:true,
-        minLength:8
-    },
-    confirmpassword:{
-        type:String,
-        required:true,
-        minLength:8,
-        validate:function(){
-            return this.confirmpassword==this.password;  
-        }
-    },
-
-    role:{
-        type:String,
-        enum:['admin','user'], 
-        default:'user'
-    },
-    resetToken:String
-
-   
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user",
+  },
+  resetToken: String,
 });
 
 // userschema.pre('save',function(){
@@ -60,30 +51,30 @@ const userschema = mongoose.Schema({
 //     console.log('after saving in db',doc);
 // });
 
-userschema.pre('save',function(){
-    this.confirmpassword=undefined;
+userschema.pre("save", function () {
+  this.confirmpassword = undefined;
 });
 
-userschema.pre('save',async function(){
-    let salt = await bcrypt.genSalt();
-     let hashedstring = await bcrypt.hash(this.password,salt);
-     this.password=hashedstring;
-})
+userschema.pre("save", async function () {
+  let salt = await bcrypt.genSalt();
+  let hashedstring = await bcrypt.hash(this.password, salt);
+  this.password = hashedstring;
+});
 
-userschema.methods.createResetToken = function(){
-    const resetToken = crypto.randomBytes(32).toString("hex");
-    this .resetToken = resetToken;
-    return resetToken;
-}
+userschema.methods.createResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  this.resetToken = resetToken;
+  return resetToken;
+};
 
-userschema.methods.resetpasswordhandler = function(password,confirmpassword){
-    this.password = password;
-    this.confirmpassword = confirmpassword;
-    this.resetToken = undefined;
-}
+userschema.methods.resetpasswordhandler = function (password, confirmpassword) {
+  this.password = password;
+  this.confirmpassword = confirmpassword;
+  this.resetToken = undefined;
+};
 
-const usermodel = mongoose.model('usermodel',userschema);
-module.exports=usermodel;
+const usermodel = mongoose.model("usermodel", userschema);
+module.exports = usermodel;
 
 // (async function createuser(){
 //     let user={
