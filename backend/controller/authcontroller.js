@@ -12,6 +12,7 @@ module.exports.protectroute = async function protectroute(req,res,next){
             let payload  = jwt.verify(token,jwtkey);
             if(payload){
                 const user = await usermodel.findById(payload.payload);
+                console.log(user);
                 req.role = user.role;
                 req.id = user.id;
                 next();

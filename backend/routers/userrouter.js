@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 const userRouter = express.Router();
-const{getUser,getAllUser,postUser,deleteUser,updateUser} = require('../controller/usercontroller');
+const{getUser,getAllUser,deleteUser,updateUser} = require('../controller/usercontroller');
 const{signup,login,isAuthorised,protectroute,logout,forgetpassword,resetpassword,contactform} = require('../controller/authcontroller');
 //user's options
+app.use(protectroute);
+
 userRouter
 .route('/:id')
 .patch(updateUser)
@@ -14,7 +16,6 @@ userRouter
 .route('/signup')
 .post(signup)
 
-app.use(protectroute);
 
 userRouter.post('/contactus',contactform);
 
@@ -43,7 +44,7 @@ userRouter
 
 
 //admin specific
-// userRouter.use(isAuthorised(['admin']));
+userRouter.use(isAuthorised(['admin']));
 userRouter
 .route('/')
 .get(getAllUser)

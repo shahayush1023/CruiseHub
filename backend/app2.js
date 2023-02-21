@@ -7,7 +7,7 @@ const cookieparser = require('cookie-parser');
 app.use(cookieparser());
 app.use(express.json());
 // app.use(cookieparser());
-
+// hjhjh
 const userRouter = require('./routers/userrouter');
 const authRouter = require('./routers/authrouter');
 const seatrouter = require('./routers/seatrouter');

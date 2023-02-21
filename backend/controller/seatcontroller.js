@@ -4,7 +4,7 @@ const reservemodel = require('../models/reserve');
 
 module.exports.getReservation = async function getReservation(req,res){
     try {
-        const seats = await seatmodel.find();
+        const seats = await seatmodel.find({});
         res.json(seats);
       } catch (err) {
         console.error(err);

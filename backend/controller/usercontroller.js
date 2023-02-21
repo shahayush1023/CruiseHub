@@ -25,22 +25,22 @@ module.exports.postUser = function postUser(req, res) {
     });
 };
 
-module.exports.contactform =  function contactform(req,res){
-    try{
-        const subject = req.body.subject;
-        const fullname = req.body.fullname;
-        const email = req.body.email;
-        res.json({
-            subject:subject,
-            message:`please cooperate to us ${fullname} we will contact you through your email ${email}`
-        });
-    }
-    catch(err){
-        res.json({
-            message:"error while contacting"
-        });
-    }
-}
+// module.exports.contactform =  function contactform(req,res){
+//     try{
+//         const subject = req.body.subject;
+//         const fullname = req.body.fullname;
+//         const email = req.body.email;
+//         res.json({
+//             subject:subject,
+//             message:`please cooperate to us ${fullname} we will contact you through your email ${email}`
+//         });
+//     }
+//     catch(err){
+//         res.json({
+//             message:"error while contacting"
+//         });
+//     }
+// }
 
 module.exports.updateUser = async function updateUser(req, res)  {
     // console.log('req->body', req.body);
