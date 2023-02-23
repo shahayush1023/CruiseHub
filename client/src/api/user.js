@@ -28,7 +28,7 @@ export const getSeatByType = async (type) => {
 
 export const signup = async (obj, conf) => {
   try {
-    const { data } = await client.post(`auth/signup`, obj, conf);
+    const { data } = await client.post(`user/signup`, obj, conf);
     return data;
   } catch (error) {
     const { response } = error;
