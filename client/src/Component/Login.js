@@ -1,6 +1,11 @@
 import React, { useReducer, useState } from 'react'
 import {LinkContainer} from 'react-router-bootstrap'
-  
+import {useNavigate} from 'react-router-dom'
+import { login } from "../api/user"  
+const config = {
+  method: "POST",
+  "Content-Type": "application/json",
+};
 const Login = () => {
   const [user,setUser]=useState({
     uname1:"", pass1:""
@@ -12,36 +17,24 @@ const Login = () => {
        value=e.target.value;
        setUser({...user,[name]:value});
      } 
-
-    const PostData =async (e) =>{
+     const navigate=useNavigate();
+     const PostData = async (e) => {
       e.preventDefault();
-      const {uname1,pass1} =user
-      console.log(uname1);
-      const res= await fetch("http://localhost:5000/login1", {
-          method:"POST",
-          headers:{
-            "Content-Type":"application/json"
-            
-          },
-          body:JSON.stringify({
-            email:uname1,
-            password:pass1,
-          })
-          
-      })
-
-      const data=await res.json();
+      const { uname1, pass1 } = user;
+  
+      const data = await login(user, config);
+  
       console.log(data);
-        if(data.status===403 || !data)
-        {
-          window.alert("invalid")
-        }
-        else{
-         
-          // history.push("/");
-        }
-      
- }
+      if (data.message === "user has logged in") {
+        window.alert("login succ");
+        
+        navigate("/");
+      } else {
+        
+        window.alert("invalid");
+      }
+    };
+
   
   return (
     <div className="l1" >

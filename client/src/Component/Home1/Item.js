@@ -2,7 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { getShipData } from "../../api/user";
 import { data } from "./data";
 import { CartContext } from "./Home1";
-const Item = ({ id, title, img, price, NumberOfseats, quantity, shipData }) => {
+const Item = ({
+  id,
+  title,
+  img,
+  price,
+  setAvailability,
+  NumberOfseats,
+  quantity,
+  amount,
+  availability,
+  index,
+}) => {
   const { increment, decrement } = useContext(CartContext);
 
   return (
@@ -16,9 +27,31 @@ const Item = ({ id, title, img, price, NumberOfseats, quantity, shipData }) => {
           <h2>{title}</h2>
         </div>
         <div className="add-minus-quantity">
-          <i class="fas fa-minus minus" onClick={() => decrement(id)}></i>
+          <i
+            class="fas fa-minus minus"
+            onClick={() => {
+              let newAv = availability.map((item, itemIndex) => {
+                if (itemIndex == index) {
+                  return { seat: item.seat + 1 };
+                } else return item;
+              });
+              setAvailability(newAv);
+              decrement(id);
+            }}
+          ></i>
           <input type="text" className="abcd" placeholder={quantity} />
-          <i class="fas fa-plus add" onClick={() => increment(id)}></i>
+          <i
+            class="fas fa-plus add"
+            onClick={() => {
+              let newAv = availability.map((item, itemIndex) => {
+                if (itemIndex == index) {
+                  return { seat: item.seat - 1 };
+                } else return item;
+              });
+              setAvailability(newAv);
+              increment(id);
+            }}
+          ></i>
         </div>
 
         <div className="price">
@@ -26,7 +59,7 @@ const Item = ({ id, title, img, price, NumberOfseats, quantity, shipData }) => {
         </div>
 
         <div className="remove-item abcde">
-          <h3>{shipData.NumberOfseats} available</h3>
+          <h3>{availability[index]?.seat} available</h3>
         </div>
       </div>
 

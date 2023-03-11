@@ -2,31 +2,68 @@ import React, { useContext, useEffect, useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import Item from "./Item";
 import { CartContext } from "./Home1";
-import { getShipData } from "../../api/user";
-const Contextcart = () => {
-  // const[item,setItem]=useState(data)
-  const { item, totalAmount, totalItem } = useContext(CartContext);
-  const [shipData, setShipData] = useState();
+import { checkRecord, getRecord, updateRecord } from "../../api/user";
+// import { getShipData } from "../../api/user";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
+const config = {
+  method: "POST",
+  "Content-Type": "application/json",
+};
 
-  const handleData = async () => {
-    const data = await getShipData();
-    setShipData(data);
-    console.log(shipData);
+const Contextcart = () => {
+  const { item, totalAmount, totalItem } = useContext(CartContext);
+
+  const [date, setDate] = useState();
+  const [availability, setAvailability] = useState([{seat:100},{seat:100},{seat:100},{seat:100},{seat:100},{seat:100}]);
+
+  const handleInput = (e) => {
+    setDate(e.target.value);
   };
 
-  useEffect(() => {
-    handleData();
-  }, []);
+  const navigate = useNavigate();
+
+  const handleBooking = async (e) => {
+    const tempDate = moment(date).format("DD-MM-YY");
+    const data = await checkRecord({ date: tempDate }, config);
+    console.log("hb data ", data);
+    localStorage.setItem("dateId", data?.id);
+    
+    if (data?.success) {
+      const record = await getRecord(data?.id);
+      console.log(record)
+      if (record.success) {
+        setAvailability(record?.record.availability);
+      }
+    }
+    else{
+      setAvailability([{seat:100},{seat:100},{seat:100},{seat:100},{seat:100},{seat:100}])
+    }
+  };
+
+  const handlePayment = async ()=>{
+    const id = localStorage.getItem("dateId");
+    const data = await updateRecord({availability:availability,id},config)
+    console.log("UPdated data >>" , data);
+    if(data?.success){
+      alert("Payment Successfull!")
+    }
+  }
+  console.log("Availability >> " , availability);
   return (
     <>
       <header>
         <div className="continue-shopping">
-          <img src={require("./arrow.png")} className="arrow-icon"></img>
-          <h3>Continue Booking</h3>
+          {/* <img src={require("./arrow.png")} className="arrow-icon"></img> */}
+          <h3 style={{fontFamily:'cursive',color:'green'}}>Please Select the Appropriate Date!!!</h3>
         </div>
       </header>
       <section className="main-cart-section">
-        <h1>Booking Your Seat1</h1>
+        <div>
+          <input type="date" style={{ width: "10%" }} onChange={handleInput} />
+          <h1 style={{ width: "50%" }}>Selected Date:{date}</h1>
+          <button onClick={handleBooking}>Book your Holiday</button>
+        </div>
         <p className="total-items">
           You have <span className="total-items-count">{totalItem} </span>
           items booked
@@ -35,12 +72,13 @@ const Contextcart = () => {
           <div className="cart-items-container">
             <Scrollbars>
               {item.map !== undefined &&
-                shipData !== undefined &&
                 item.map((curItem, index) => {
                   return (
                     <Item
+                      availability={availability}
+                      setAvailability={setAvailability}
+                      index={index}
                       key={curItem.id}
-                      shipData={shipData[index]}
                       {...curItem}
                     />
                   );
@@ -53,7 +91,7 @@ const Contextcart = () => {
           <h3>
             Booking Total:<span>${totalAmount}</span>
           </h3>
-          <button>Pay</button>
+          <button onClick={handlePayment}>Pay</button>
         </div>
       </section>
     </>

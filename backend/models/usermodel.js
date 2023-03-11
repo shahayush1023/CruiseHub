@@ -55,11 +55,11 @@ userschema.pre("save", function () {
   this.confirmpassword = undefined;
 });
 
-userschema.pre("save", async function () {
-  let salt = await bcrypt.genSalt();
-  let hashedstring = await bcrypt.hash(this.password, salt);
-  this.password = hashedstring;
-});
+// userschema.pre("save", async function () {
+//   let salt = await bcrypt.genSalt();
+//   let hashedstring = await bcrypt.hash(this.password, salt);
+//   this.password = hashedstring;
+// });
 
 userschema.methods.createResetToken = function () {
   const resetToken = crypto.randomBytes(32).toString("hex");

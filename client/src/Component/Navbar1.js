@@ -9,9 +9,9 @@ import {LinkContainer} from 'react-router-bootstrap'
 function NavScrollExample() {
   
   return (
-    <Navbar bg="primary" expand="lg">
+    <Navbar bg="dark"  expand="lg" style={{marginBottom:'4px'}}>
       <Container fluid>
-        <Navbar.Brand>CruiseHub</Navbar.Brand>
+        <Navbar.Brand><span style={{color:'white' ,fontFamily:'Apple Chancery, cursive'}}>CRUISEHUB</span></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -20,14 +20,14 @@ function NavScrollExample() {
             navbarScroll
           >
              <LinkContainer to="/">
-            <Nav.Link>Home</Nav.Link>
+            <Nav.Link><span style={{color:'white'}}>Home</span></Nav.Link>
             </LinkContainer>
             <LinkContainer to= "/about">
-            <Nav.Link>About Us</Nav.Link>
+            <Nav.Link><span style={{color:'white'}}>About Us</span></Nav.Link>
             </LinkContainer>
             <LinkContainer to= "/contact">
             <Nav.Link>
-              Contact Us
+            <span style={{color:'white'}}>Contact Us</span>
             </Nav.Link>
             </LinkContainer>
             
@@ -35,8 +35,8 @@ function NavScrollExample() {
             
           </Nav>
           <Nav>
-          <LinkContainer to= "/signup"><Nav.Link>SignUp</Nav.Link></LinkContainer>
-          <LinkContainer to= "/login"><Nav.Link>Login</Nav.Link></LinkContainer>
+          <LinkContainer to= "/signup"><Nav.Link><span style={{color:'white'}}>Sign Up</span></Nav.Link></LinkContainer>
+          <LinkContainer to= "/login"><Nav.Link><span style={{color:'white'}}>Log In</span></Nav.Link></LinkContainer>
           </Nav>
           
         </Navbar.Collapse>

@@ -91,16 +91,24 @@ module.exports.contactform = async function contactform(req, res) {
 module.exports.login = async function login(req, res) {
   try {
     let data = req.body;
-    if (data.email) {
-      let user = await usermodel.findOne({ email: data.email });
+    console.log(data);
+    if (data.uname1) {
+      let user = await usermodel.findOne({ email: data.uname1 });
       if (user) {
-        if (user.password == data.password) {
+        if (user.password == data.pass1) {
           let uid = user["_id"];
           let token = jwt.sign({ payload: uid }, jwtkey);
-          res.cookie("login", token, { httpOnly: true });
-          return res.json({
+          console.log(token);
+          if(token){
+            res.cookie("login", token, { 
+              expires:new Date(Date.now()+258920000)
+              ,httpOnly: true });
+              // console.log(res.cookies);
+            }
+          return res.status(200).json({
             message: "user has logged in",
             userdetails: data,
+            
           });
         } else {
           return res.json({
@@ -113,8 +121,9 @@ module.exports.login = async function login(req, res) {
         });
       }
     } else {
+      console.log("dsvaegaeg");
       return res.json({
-        message: "please enter email",
+        message: "please enter Email",
       });
     }
   } catch (err) {

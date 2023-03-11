@@ -6,17 +6,19 @@ import Contextcart from "./Contextcart";
 import { getShipData } from "../../api/user";
 export const CartContext = createContext();
 
-const initialState = {
+let initialState = {
   item: data,
   totalAmount: 0,
   totalItem: 0,
+  availability : [{seat:100},{seat:100},{seat:100},{seat:100},{seat:100},{seat:100}]
+  
 };
 const Home1 = () => {
   const [shipData, setShipData] = useState();
   const [dataShip, setDataShip] = useState();
 
   const handleData = async () => {
-    const data = await getShipData();
+    // const data = await getShipData();
     setShipData(data);
   };
 
@@ -30,6 +32,8 @@ const Home1 = () => {
     return dispatch({
       type: "INCREMENT",
       payload: id,
+      // availability:availability,
+      // index:index
     });
   };
   const decrement = (id, NumberOfseats) => {
