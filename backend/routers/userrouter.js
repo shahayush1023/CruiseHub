@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const userRouter = express.Router();
 const{getUser,getAllUser,deleteUser,updateUser} = require('../controller/usercontroller');
-const{signup,login,isAuthorised,protectroute,logout,forgetpassword,resetpassword,contactform} = require('../controller/authcontroller');
+const{signup,login,isAuthorised,protectroute,logout,forgetpassword,resetpassword,contactform, getcontacts} = require('../controller/authcontroller');
 //user's options
 // app.use(protectroute);
 
@@ -17,7 +17,10 @@ userRouter
 .post(signup)
 
 
-userRouter.post('/contactus',contactform);
+userRouter
+.route('/contactus')
+.post(contactform)
+.get(getcontacts);
 
 userRouter
 .route('/login')

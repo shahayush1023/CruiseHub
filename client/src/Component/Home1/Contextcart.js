@@ -6,15 +6,16 @@ import { checkRecord, getRecord, updateRecord } from "../../api/user";
 // import { getShipData } from "../../api/user";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import { data as DATA } from "./data";
 const config = {
   method: "POST",
   "Content-Type": "application/json",
 };
 
 const Contextcart = () => {
-  const { item, totalAmount, totalItem } = useContext(CartContext);
+  const { item, totalAmount, totalItem, increment } = useContext(CartContext);
 
-  const [date, setDate] = useState();
+  const [date, setDate] = useState("");
   const [availability, setAvailability] = useState([{seat:100},{seat:100},{seat:100},{seat:100},{seat:100},{seat:100}]);
 
   const handleInput = (e) => {
@@ -24,6 +25,9 @@ const Contextcart = () => {
   const navigate = useNavigate();
 
   const handleBooking = async (e) => {
+    if(date=== "")
+    alert("Select the date!!! ");
+    
     const tempDate = moment(date).format("DD-MM-YY");
     const data = await checkRecord({ date: tempDate }, config);
     console.log("hb data ", data);
@@ -34,10 +38,21 @@ const Contextcart = () => {
       console.log(record)
       if (record.success) {
         setAvailability(record?.record.availability);
+        // DATA.forEach(element => {
+        //   element.amount = record?.record?.availability?.seat;
+        // });
+        for (let i = 0; i < DATA.length; i++) {
+          DATA[i].amount = record?.record?.availability[i]?.seat;
+        }
+        console.log("data>>>>", DATA)
+        console.log("api data>>>>", record?.record?.availability)
       }
     }
     else{
-      setAvailability([{seat:100},{seat:100},{seat:100},{seat:100},{seat:100},{seat:100}])
+      setAvailability([{seat:100},{seat:100},{seat:100},{seat:100},{seat:100},{seat:100}]);
+      for (let i = 0; i < DATA.length; i++) {
+        DATA[i].amount = 100;
+      }
     }
   };
 
@@ -47,6 +62,7 @@ const Contextcart = () => {
     console.log("UPdated data >>" , data);
     if(data?.success){
       alert("Payment Successfull!")
+      window.location.reload();
     }
   }
   console.log("Availability >> " , availability);

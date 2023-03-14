@@ -5,7 +5,7 @@ export const data = [
     description: "abcd",
     price: "30",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsh7eqRDSBAtwzLTS7NrA-0VFSwHXzyugOoL9wMCJlvA&s",
-    amount: 20,
+    amount: 0,
     quantity: 0,
   },
 
@@ -15,7 +15,7 @@ export const data = [
     description: "abcd",
     price: "50",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsh7eqRDSBAtwzLTS7NrA-0VFSwHXzyugOoL9wMCJlvA&s",
-    amount: 20,
+    amount: 0,
     quantity: 0,
   },
 
@@ -25,7 +25,7 @@ export const data = [
     description: "abcd",
     price: "20",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsh7eqRDSBAtwzLTS7NrA-0VFSwHXzyugOoL9wMCJlvA&s",
-    amount: 20,
+    amount: 0,
     quantity: 0,
   },
 
@@ -35,7 +35,7 @@ export const data = [
     description: "abcd",
     price: "5",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsh7eqRDSBAtwzLTS7NrA-0VFSwHXzyugOoL9wMCJlvA&s",
-    amount: 50,
+    amount: 0,
     quantity: 0,
   },
   {
@@ -44,7 +44,7 @@ export const data = [
     description: "abcd",
     price: "5",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsh7eqRDSBAtwzLTS7NrA-0VFSwHXzyugOoL9wMCJlvA&s",
-    amount: 20,
+    amount: 0,
     quantity: 0,
   },
   {
@@ -53,7 +53,7 @@ export const data = [
     description: "abcd",
     price: "2",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsh7eqRDSBAtwzLTS7NrA-0VFSwHXzyugOoL9wMCJlvA&s",
-    amount: 60,
+    amount: 0,
     quantity: 0,
   },
 ];

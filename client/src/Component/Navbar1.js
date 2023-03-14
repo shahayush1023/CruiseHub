@@ -27,7 +27,13 @@ function NavScrollExample() {
             </LinkContainer>
             <LinkContainer to= "/contact">
             <Nav.Link>
-            <span style={{color:'white'}}>Contact Us</span>
+            <span style={{color:'white'}}>FeedBack Time</span>
+            </Nav.Link>
+            </LinkContainer>
+
+            <LinkContainer to= "/feedback">
+            <Nav.Link>
+            <span style={{color:'white'}}>What's People Opinion</span>
             </Nav.Link>
             </LinkContainer>
             

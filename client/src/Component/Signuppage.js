@@ -27,21 +27,8 @@ const Signup = () => {
     const { name, email, password, cpassword } = user;
 
     const data = await signup(user, config);
-    // console.log(data);
-    // const res = await fetch("http://localhost:5000/signup", {
-    //   method: "POST",
-
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     name: name,
-    //     email: email,
-    //     password: password,
-    //     confirmpassword: cpassword,
-    //   }),
-    // });
-    // const data = await res.json();
+    
+    
     console.log(data);
     if (data.message === "user signed up") {
       window.alert("succesfully registration");

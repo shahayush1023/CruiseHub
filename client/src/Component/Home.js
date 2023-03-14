@@ -104,7 +104,7 @@ const Home = () => {
 
           <section id="testimonials">
             <div class="testimonial-heading">
-              <h1>OUR HAPPY CUSTOMERS</h1>
+              <h1>OUR TEAM MEMBER</h1>
             </div>
 
             <div class="testimonial-box-container">
@@ -121,13 +121,13 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div class="reviews">
+                  {/* <div class="reviews">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="far fa-star"></i>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div class="client-comment">
@@ -154,13 +154,13 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div class="reviews">
+                  {/* <div class="reviews">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div class="client-comment">
@@ -187,13 +187,13 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div class="reviews">
+                  {/* <div class="reviews">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="far fa-star"></i>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div class="client-comment">
@@ -220,13 +220,13 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div class="reviews">
+                  {/* <div class="reviews">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="far fa-star"></i>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div class="client-comment">

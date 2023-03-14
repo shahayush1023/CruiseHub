@@ -28,7 +28,7 @@ const Home1 = () => {
 
   // const[item,setItem]=useState(data)
   const [state, dispatch] = useReducer(reducer, initialState);
-  const increment = (id, NumberOfseats) => {
+  const increment = (id) => {
     return dispatch({
       type: "INCREMENT",
       payload: id,
@@ -36,11 +36,11 @@ const Home1 = () => {
       // index:index
     });
   };
-  const decrement = (id, NumberOfseats) => {
+  const decrement = (id) => {
     return dispatch({
       type: "DECREMENT",
       payload: id,
-      NumberOfseats: NumberOfseats,
+      // NumberOfseats: NumberOfseats,
     });
   };
   useEffect(() => {

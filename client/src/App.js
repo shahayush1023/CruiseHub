@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./Component/Footer";
 import About from "./About";
 import CheckBox from "./Component/CheckBox";
+import Review from "./Component/Review";
 
 import Contact from "./Component/Contact";
 import Home1 from "./Component/Home1/Home1";
@@ -24,6 +25,7 @@ function App() {
 
         <Route exact path="/seat" element={<CheckBox />} />
         <Route exact path="/Home1" element={<Home1 />} />
+        <Route exact path="/feedback" element={<Review />} />
       </Routes>
       <Footer />
     </Router>

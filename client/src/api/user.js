@@ -39,6 +39,20 @@ export const signup = async (obj, conf) => {
   }
 };
 
+export const contact = async (obj, conf) => {
+  try {
+    const { data } = await client.post(`user/contactus`, obj, conf);
+    console.log("data >>>",{data});
+    return data;
+  } catch (error) {
+    const { response } = error;
+    if (response?.data) {
+      return response.data;
+    }
+    return { error: error.message || error };
+  }
+};
+
 export const checkRecord=async(obj,conf) =>{
   try{
     const { data } = await client.post(`/record/getrecordbydate`, obj, conf);
@@ -55,6 +69,19 @@ export const checkRecord=async(obj,conf) =>{
 export const getRecord=async(id) =>{
   try{
     const { data } = await client.get(`/record/getrecord/${id}`);
+    return data;
+  } catch (error) {
+    const { response } = error;
+    if (response?.data) {
+      return response.data;
+    }
+    return { error: error.message || error };
+  }
+}
+
+export const getReview=async() =>{
+  try{
+    const { data } = await client.get(`/user/contactus`);
     return data;
   } catch (error) {
     const { response } = error;

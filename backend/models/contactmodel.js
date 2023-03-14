@@ -13,7 +13,7 @@ mongoose.connect(dblink)
 
 
 const contactschema = mongoose.Schema({
-    fullname:{
+    name:{
         type:String,
         required:true
     },
@@ -24,15 +24,11 @@ const contactschema = mongoose.Schema({
             return emailvalid.validate(this.email);
         }
     },
-    subject:{
+    
+    message:{
         type:String,
         required:true,
-        maxLength:30   
-    },
-    Description:{
-        type:String,
-        required:true,
-        maxLength:100   
+        maxLength:500   
     }
 });
 

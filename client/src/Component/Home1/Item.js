@@ -30,21 +30,28 @@ const Item = ({
           <i
             class="fas fa-minus minus"
             onClick={() => {
+              // console.log({quantity});
               let newAv = availability.map((item, itemIndex) => {
-                if (itemIndex == index) {
+                if (itemIndex == index  ) {
+                  console.log(quantity);
+                  if(quantity >0){
                   return { seat: item.seat + 1 };
-                } else return item;
+                  }
+                  else
+                  return { seat: item.seat  };
+                } 
+                else return item;
               });
-              setAvailability(newAv);
-              decrement(id);
+                   setAvailability(newAv);
+                    decrement(id);
             }}
           ></i>
-          <input type="text" className="abcd" placeholder={quantity} />
+          <input type="text" disabled className="abcd" placeholder={quantity} />
           <i
             class="fas fa-plus add"
             onClick={() => {
               let newAv = availability.map((item, itemIndex) => {
-                if (itemIndex == index) {
+                if (itemIndex == index && item.seat > 0) {
                   return { seat: item.seat - 1 };
                 } else return item;
               });
