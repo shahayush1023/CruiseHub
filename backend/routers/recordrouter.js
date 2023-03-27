@@ -5,13 +5,14 @@ const {
   getRecord,
   getRecordByDate,
 } = require("../controller/recordController");
+const protectroute = require("../controller/authcontroller");
 const app = express();
 const recordRouter = express.Router();
 
 // recordRouter.get("/seats", getReservation);
 // .get('/seats/:type',seatbytype)
 
-recordRouter.put("/updateRecord", updateRecord);
+recordRouter.put("/updateRecord" , updateRecord);
 recordRouter.post("/addrecord", addRecord);
 recordRouter.get("/getrecord/:id", getRecord);
 recordRouter.post("/getrecordbydate", getRecordByDate);

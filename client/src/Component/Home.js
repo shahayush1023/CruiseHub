@@ -68,8 +68,16 @@ const Home = () => {
         </div>
       </section>
 
-      <h3 style={{ marginTop: "50px", marginLeft: "440px",color:'black',textDecoration:'underline',fontFamily:'cursive'}}>
-          MOST LIKED SERVICES BY OUR CUSTOMER!
+      <h3
+        style={{
+          marginTop: "50px",
+          marginLeft: "440px",
+          color: "black",
+          textDecoration: "underline",
+          fontFamily: "cursive",
+        }}
+      >
+        MOST LIKED SERVICES BY OUR CUSTOMER!
       </h3>
       <div class="container-fluid mb-4">
         <div class="row justify-content-center row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
@@ -80,25 +88,69 @@ const Home = () => {
                 alt="..."
                 height="250px"
               />
-               <p style={{textAlign:'center',fontWeight:'200px',fontSize:'30px',color:'green',textDecoration:'underline',fontFamily:'cursive'}}>Casino</p>
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "200px",
+                  fontSize: "30px",
+                  color: "green",
+                  textDecoration: "underline",
+                  fontFamily: "cursive",
+                }}
+              >
+                Casino
+              </p>
             </div>
           </div>
           <div class="col mt-4">
             <div class="card">
               <img src={require("./food.jpg")} alt="..." height="250px" />
-              <p style={{textAlign:'center',fontWeight:'200px',fontSize:'30px',color:'green',textDecoration:'underline',fontFamily:'cursive'}}>Food</p>
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "200px",
+                  fontSize: "30px",
+                  color: "green",
+                  textDecoration: "underline",
+                  fontFamily: "cursive",
+                }}
+              >
+                Food
+              </p>
             </div>
           </div>
           <div class="col mt-4">
             <div class="card">
               <img src={require("./dolphin.jpg")} alt="..." height="250px" />
-              <p style={{textAlign:'center',fontWeight:'200px',fontSize:'30px',color:'green',textDecoration:'underline',fontFamily:'cursive'}}>SightSeeing</p> 
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "200px",
+                  fontSize: "30px",
+                  color: "green",
+                  textDecoration: "underline",
+                  fontFamily: "cursive",
+                }}
+              >
+                SightSeeing
+              </p>
             </div>
           </div>
           <div class="col mt-4">
             <div class="card">
               <img src={require("./spa.jpg")} alt="..." height="250px" />
-              <p style={{textAlign:'center',fontWeight:'200px',fontSize:'30px',color:'green',textDecoration:'underline',fontFamily:'cursive'}}>Spa</p>
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "200px",
+                  fontSize: "30px",
+                  color: "green",
+                  textDecoration: "underline",
+                  fontFamily: "cursive",
+                }}
+              >
+                Spa
+              </p>
             </div>
           </div>
 
@@ -244,14 +296,28 @@ const Home = () => {
         </div>
       </div>
 
-      <p style={{color:'green',fontFamily:'cursive',marginLeft:'500px',border:'2px solid gray',textAlign:"center",fontWeight:'200px',fontSize:'30px',width:'40%'}}>
-         Proceed to Book !
-        <LinkContainer to="/Home1">
-          <a href="">Click Me</a>
-        </LinkContainer>
+      <p
+        style={{
+          color: "green",
+          fontFamily: "cursive",
+          marginLeft: "500px",
+          border: "2px solid gray",
+          textAlign: "center",
+          fontWeight: "200px",
+          fontSize: "30px",
+          width: "40%",
+        }}
+      >
+        Proceed to Book !
+        {/* // <LinkContainer to="/Home1">
+        //   <a href="">Click Me</a>
+        // </LinkContainer> */}
+        {sessionStorage.getItem("user") && (
+          <LinkContainer to="/Home1">
+            <a href="#">Click Me</a>
+          </LinkContainer>
+        )}
       </p>
-      
-
     </>
   );
 };

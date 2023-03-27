@@ -32,18 +32,17 @@ const Item = ({
             onClick={() => {
               // console.log({quantity});
               let newAv = availability.map((item, itemIndex) => {
-                if (itemIndex == index  ) {
+                if (itemIndex == index) {
                   console.log(quantity);
-                  if(quantity >0){
-                  return { seat: item.seat + 1 };
-                  }
-                  else
-                  return { seat: item.seat  };
-                } 
-                else return item;
+                  if (quantity > 0) {
+                    return { seat: item.seat + 1 };
+                  } else return { seat: item.seat };
+                } else return item;
               });
-                   setAvailability(newAv);
-                    decrement(id);
+              setAvailability(newAv);
+              console.log("arr>>>>", newAv);
+              localStorage.setItem("ava", JSON.stringify(newAv));
+              decrement(id);
             }}
           ></i>
           <input type="text" disabled className="abcd" placeholder={quantity} />
@@ -56,6 +55,7 @@ const Item = ({
                 } else return item;
               });
               setAvailability(newAv);
+              localStorage.setItem("ava", JSON.stringify(newAv));
               increment(id);
             }}
           ></i>

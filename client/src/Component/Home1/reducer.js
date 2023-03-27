@@ -3,6 +3,20 @@ export const reducer = (state, action) => {
     const updatedCart = state.item.map((curElem) => {
       if (curElem.id === action.payload) {
         if (curElem.quantity <= curElem.amount - 1) {
+          console.log("quant>>",curElem.quantity +1)
+          console.log("id>>",curElem.id)
+          if(curElem.id==1)
+          localStorage.setItem(curElem.id,curElem.quantity+1);
+          else if(curElem.id==2)
+          localStorage.setItem(curElem.id,curElem.quantity+1);
+          else if(curElem.id==3)
+          localStorage.setItem(curElem.id,curElem.quantity+1);
+          else if(curElem.id==4)
+          localStorage.setItem(curElem.id,curElem.quantity+1);
+          else if(curElem.id==5)
+          localStorage.setItem(curElem.id,curElem.quantity+1);
+          else if(curElem.id==6)
+          localStorage.setItem(curElem.id,curElem.quantity+1);
           return { ...curElem, quantity: curElem.quantity + 1 };
         }
       }
@@ -15,13 +29,24 @@ export const reducer = (state, action) => {
     const updatedCart = state.item.map((curElem) => {
       if (curElem.id === action.payload) {
         if (curElem.quantity > 0) {
-          return { ...curElem, quantity: curElem.quantity - 1 };
+          if(curElem.id==1)
+          localStorage.setItem(curElem.id,curElem.quantity-1);
+          else if(curElem.id==2)
+          localStorage.setItem(curElem.id,curElem.quantity-1);
+          else if(curElem.id==3)
+          localStorage.setItem(curElem.id,curElem.quantity-1);
+          else if(curElem.id==4)
+          localStorage.setItem(curElem.id,curElem.quantity-1);
+          else if(curElem.id==5)
+          localStorage.setItem(curElem.id,curElem.quantity-1);
+          else if(curElem.id==6)
+          localStorage.setItem(curElem.id,curElem.quantity-1);
+          return { ...curElem, quantity: curElem.quantity - 1};
         }
       }
       return curElem;
     });
-
-    return { ...state, item: updatedCart };
+    return { ...state, item: updatedCart,  };
   }
   if (action.type === "GET_TOTAL") {
     let { totalItem, totalAmount } = state.item.reduce(
@@ -32,6 +57,7 @@ export const reducer = (state, action) => {
         accum.totalAmount += updatedTotalAmount;
 
         accum.totalItem += quantity;
+        localStorage.setItem("amount>>",accum.totalAmount);
         return accum;
       },
       {

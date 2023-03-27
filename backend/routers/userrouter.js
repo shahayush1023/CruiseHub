@@ -8,6 +8,7 @@ const{signup,login,isAuthorised,protectroute,logout,forgetpassword,resetpassword
 
 userRouter
 .route('/:id')
+.get(getUser)
 .patch(updateUser)
 .delete(deleteUser)
 

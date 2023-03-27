@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const jwtkey = "sndngu859hguo34gd";
 const usermodel = require("../models/usermodel");
 const contactmodel = require("../models/contactmodel");
-const transporter = require('../utility/emailer');
+const transporter = require("../utility/emailer");
 
 module.exports.protectroute = async function protectroute(req, res, next) {
   try {
@@ -70,27 +70,26 @@ module.exports.signup = async function SignUp(req, res) {
 module.exports.contactform = async function contactform(req, res) {
   try {
     let obj = req.body;
-    console.log("obj>>",obj);
+    console.log("obj>>", obj);
     let user = await contactmodel.create(obj);
-    var mailOptions = { 
-                          from : '"CruiseHub🚢" <vaishal0508@gmail.com>', 
-                          to: obj.email, 
-                          subject:'your review is successfully saved',
-                          text:`Thank you ${obj.name} for reviewing our site We are always ready to serve you ${obj.email} is saved in our database forever😊 `                  
-                }  
-       
-                      transporter.sendMail(mailOptions, (err,info) => { 
-                          if(err){ 
-                              return console.log(err); 
-                          } 
-                        });
-      if (user) {
+    var mailOptions = {
+      from: '"CruiseHub🚢" <vaishal0508@gmail.com>',
+      to: obj.email,
+      subject: "your review is successfully saved",
+      text: `Thank you ${obj.name} for reviewing our site We are always ready to serve you ${obj.email} is saved in our database forever😊 `,
+    };
+
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        return console.log(err);
+      }
+    });
+    if (user) {
       res.json({
         message: "user send request regarding something",
         data: obj,
       });
-    } 
-    else {
+    } else {
       res.json({
         message: "error while sending ",
       });
@@ -103,15 +102,15 @@ module.exports.contactform = async function contactform(req, res) {
   }
 };
 
-module.exports.getcontacts = async function getcontacts(req,res){
+module.exports.getcontacts = async function getcontacts(req, res) {
   const reviews = await contactmodel.find();
-  if(reviews){
+  if (reviews) {
     res.json({
-      success:true,
-      data:reviews
-    })
+      success: true,
+      data: reviews,
+    });
   }
-}
+};
 
 module.exports.login = async function login(req, res) {
   try {
@@ -124,16 +123,16 @@ module.exports.login = async function login(req, res) {
           let uid = user["_id"];
           let token = jwt.sign({ payload: uid }, jwtkey);
           console.log(token);
-          if(token){
-            res.cookie("login", token, { 
-              expires:new Date(Date.now()+258920000)
-              ,httpOnly: true });
-              // console.log(res.cookies);
-            }
+          if (token) {
+            res.cookie("login", token, {
+              expires: new Date(Date.now() + 258920000),
+              httpOnly: true,
+            });
+            // console.log(res.cookies);
+          }
           return res.status(200).json({
             message: "user has logged in",
-            userdetails: data,
-            
+            userdetails: user,
           });
         } else {
           return res.json({

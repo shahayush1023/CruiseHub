@@ -4,9 +4,10 @@ import Item from "./Item";
 import { CartContext } from "./Home1";
 import { checkRecord, getRecord, updateRecord } from "../../api/user";
 // import { getShipData } from "../../api/user";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { data as DATA } from "./data";
+import { LinkContainer } from "react-router-bootstrap";
 const config = {
   method: "POST",
   "Content-Type": "application/json",
@@ -16,7 +17,14 @@ const Contextcart = () => {
   const { item, totalAmount, totalItem, increment } = useContext(CartContext);
 
   const [date, setDate] = useState("");
-  const [availability, setAvailability] = useState([{seat:100},{seat:100},{seat:100},{seat:100},{seat:100},{seat:100}]);
+  const [availability, setAvailability] = useState([
+    { seat: 100 },
+    { seat: 100 },
+    { seat: 100 },
+    { seat: 100 },
+    { seat: 100 },
+    { seat: 100 },
+  ]);
 
   const handleInput = (e) => {
     setDate(e.target.value);
@@ -25,17 +33,23 @@ const Contextcart = () => {
   const navigate = useNavigate();
 
   const handleBooking = async (e) => {
-    if(date=== "")
-    alert("Select the date!!! ");
+    if (date === "") alert("Select the date!!! ");
+
+    localStorage.setItem(1, 0);
+    localStorage.setItem(2, 0);
+    localStorage.setItem(3, 0);
+    localStorage.setItem(4, 0);
+    localStorage.setItem(5, 0);
+    localStorage.setItem(6, 0);
     
     const tempDate = moment(date).format("DD-MM-YY");
     const data = await checkRecord({ date: tempDate }, config);
     console.log("hb data ", data);
     localStorage.setItem("dateId", data?.id);
-    
+
     if (data?.success) {
       const record = await getRecord(data?.id);
-      console.log(record)
+      console.log(record);
       if (record.success) {
         setAvailability(record?.record.availability);
         // DATA.forEach(element => {
@@ -44,34 +58,42 @@ const Contextcart = () => {
         for (let i = 0; i < DATA.length; i++) {
           DATA[i].amount = record?.record?.availability[i]?.seat;
         }
-        console.log("data>>>>", DATA)
-        console.log("api data>>>>", record?.record?.availability)
+        console.log("data>>>>", DATA);
+        console.log("api data>>>>", record?.record?.availability);
       }
-    }
-    else{
-      setAvailability([{seat:100},{seat:100},{seat:100},{seat:100},{seat:100},{seat:100}]);
+    } else {
+      setAvailability([
+        { seat: 100 },
+        { seat: 100 },
+        { seat: 100 },
+        { seat: 100 },
+        { seat: 100 },
+        { seat: 100 },
+      ]);
       for (let i = 0; i < DATA.length; i++) {
         DATA[i].amount = 100;
       }
     }
   };
 
-  const handlePayment = async ()=>{
+  const handlePayment = async () => {
     const id = localStorage.getItem("dateId");
-    const data = await updateRecord({availability:availability,id},config)
-    console.log("UPdated data >>" , data);
-    if(data?.success){
-      alert("Payment Successfull!")
+    const data = await updateRecord({ availability: availability, id }, config);
+    console.log("UPdated data >>", data);
+    if (data?.success) {
+      alert("Payment Successfull!");
       window.location.reload();
     }
-  }
-  console.log("Availability >> " , availability);
+  };
+  console.log("Availability >> ", availability);
   return (
     <>
       <header>
         <div className="continue-shopping">
           {/* <img src={require("./arrow.png")} className="arrow-icon"></img> */}
-          <h3 style={{fontFamily:'cursive',color:'green'}}>Please Select the Appropriate Date!!!</h3>
+          <h3 style={{ fontFamily: "cursive", color: "green" }}>
+            Please Select the Appropriate Date!!!
+          </h3>
         </div>
       </header>
       <section className="main-cart-section">
@@ -107,7 +129,17 @@ const Contextcart = () => {
           <h3>
             Booking Total:<span>${totalAmount}</span>
           </h3>
-          <button onClick={handlePayment}>Pay</button>
+          {/* <LinkContainer to="/payment">
+            <NavLink>
+              <button>PAY</button>
+            </NavLink>
+          </LinkContainer> */}
+
+          <LinkContainer to="/order">
+            <NavLink>
+              <button>CHECKOUT</button>
+            </NavLink>
+          </LinkContainer>
         </div>
       </section>
     </>

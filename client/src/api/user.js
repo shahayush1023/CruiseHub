@@ -42,7 +42,7 @@ export const signup = async (obj, conf) => {
 export const contact = async (obj, conf) => {
   try {
     const { data } = await client.post(`user/contactus`, obj, conf);
-    console.log("data >>>",{data});
+    console.log("data >>>", { data });
     return data;
   } catch (error) {
     const { response } = error;
@@ -53,8 +53,8 @@ export const contact = async (obj, conf) => {
   }
 };
 
-export const checkRecord=async(obj,conf) =>{
-  try{
+export const checkRecord = async (obj, conf) => {
+  try {
     const { data } = await client.post(`/record/getrecordbydate`, obj, conf);
     return data;
   } catch (error) {
@@ -64,10 +64,10 @@ export const checkRecord=async(obj,conf) =>{
     }
     return { error: error.message || error };
   }
-}
+};
 
-export const getRecord=async(id) =>{
-  try{
+export const getRecord = async (id) => {
+  try {
     const { data } = await client.get(`/record/getrecord/${id}`);
     return data;
   } catch (error) {
@@ -77,11 +77,12 @@ export const getRecord=async(id) =>{
     }
     return { error: error.message || error };
   }
-}
+};
 
-export const getReview=async() =>{
-  try{
+export const getReview = async () => {
+  try {
     const { data } = await client.get(`/user/contactus`);
+    console.log(data);
     return data;
   } catch (error) {
     const { response } = error;
@@ -90,13 +91,12 @@ export const getReview=async() =>{
     }
     return { error: error.message || error };
   }
-}
+};
 
-
-export const updateRecord=async(obj,config) =>{
-  console.log("obj >> " , obj)
-  try{
-    const { data } = await client.put(`/record/updateRecord/`,obj,config);
+export const updateRecord = async (obj, config) => {
+  console.log("obj >> ", obj);
+  try {
+    const { data } = await client.put(`/record/updateRecord/`, obj, config);
     return data;
   } catch (error) {
     const { response } = error;
@@ -105,11 +105,24 @@ export const updateRecord=async(obj,config) =>{
     }
     return { error: error.message || error };
   }
-}
+};
 
 export const login = async (obj, conf) => {
   try {
     const { data } = await client.post(`user/login`, obj, conf);
+    return data;
+  } catch (error) {
+    const { response } = error;
+    if (response?.data) {
+      return response.data;
+    }
+    return { error: error.message || error };
+  }
+};
+
+export const getuser = async (id) => {
+  try {
+    const { data } = await client.get(`user/${id}`, id);
     return data;
   } catch (error) {
     const { response } = error;
