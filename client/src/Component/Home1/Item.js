@@ -18,9 +18,9 @@ const Item = ({
 
   return (
     <>
-      <div className="items-info">
+      <div className="items-info" >
         <div className="product-img">
-          <img src={img} alt="image" />
+          <img src={img} alt="image"  />
         </div>
 
         <div className="title">

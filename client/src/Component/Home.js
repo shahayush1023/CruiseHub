@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 const Home = () => {
   return (
     <>
+    {localStorage.setItem("cnt",0)}
       <Carousel>
         <Carousel.Item interval={500}>
           <img

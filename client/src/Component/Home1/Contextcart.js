@@ -14,8 +14,9 @@ const config = {
 };
 
 const Contextcart = () => {
+  
   const { item, totalAmount, totalItem, increment } = useContext(CartContext);
-
+   
   const [date, setDate] = useState("");
   const [availability, setAvailability] = useState([
     { seat: 100 },
@@ -28,11 +29,13 @@ const Contextcart = () => {
 
   const handleInput = (e) => {
     setDate(e.target.value);
+    localStorage.setItem("cnt",0);
   };
 
   const navigate = useNavigate();
 
   const handleBooking = async (e) => {
+    
     if (date === "") alert("Select the date!!! ");
 
     localStorage.setItem(1, 0);
@@ -41,6 +44,7 @@ const Contextcart = () => {
     localStorage.setItem(4, 0);
     localStorage.setItem(5, 0);
     localStorage.setItem(6, 0);
+    localStorage.setItem("cnt",1);
     
     const tempDate = moment(date).format("DD-MM-YY");
     const data = await checkRecord({ date: tempDate }, config);
@@ -52,9 +56,7 @@ const Contextcart = () => {
       console.log(record);
       if (record.success) {
         setAvailability(record?.record.availability);
-        // DATA.forEach(element => {
-        //   element.amount = record?.record?.availability?.seat;
-        // });
+        
         for (let i = 0; i < DATA.length; i++) {
           DATA[i].amount = record?.record?.availability[i]?.seat;
         }
@@ -90,24 +92,40 @@ const Contextcart = () => {
     <>
       <header>
         <div className="continue-shopping">
-          {/* <img src={require("./arrow.png")} className="arrow-icon"></img> */}
-          <h3 style={{ fontFamily: "cursive", color: "green" }}>
-            Please Select the Appropriate Date!!!
-          </h3>
+          
+         
         </div>
       </header>
       <section className="main-cart-section">
-        <div>
-          <input type="date" style={{ width: "10%" }} onChange={handleInput} />
-          <h1 style={{ width: "50%" }}>Selected Date:{date}</h1>
-          <button onClick={handleBooking}>Book your Holiday</button>
+        <div style={{}}>
+          <div style={{marginLeft:'540px'}}>
+          <p>Select the Appropriate Date!!!!!</p>
+          
+          <input type="date" style={{ padding: '10px',
+        fontSize: '16px',
+        border: '1px solid #ccc',
+      borderRadius: '5px',
+     boxShadow: '0 0 5px rgba(0, 0, 0, 0.1)',
+     outline: 'none',
+     transition:'all 0.3s ease-in-out',width:'20%' }} onChange={handleInput} />
+           
+          <h5 style={{ fontSize: '24px',
+  fontWeight: 'bold',
+  marginTop: '20px',
+  color: '#4CAF50'}}>Selected Date:{date}</h5>
+          </div>
+          <button onClick={handleBooking} style={{marginLeft:'-42px',backgroundColor:'lightgreen',width:'100%',border:'none',borderRadius:'0px'}}>Book your Holiday</button>
         </div>
-        <p className="total-items">
+        <p className="total-items" style={{marginTop:'40px'}}>
           You have <span className="total-items-count">{totalItem} </span>
           items booked
         </p>
-        <div className="cart-items">
+        {console.log("cnt>>",localStorage.getItem("cnt"))}
+        { localStorage.getItem("cnt")==1  ?
+        
+        <div className="cart-items" style={{marginLeft:'-27px'}}>
           <div className="cart-items-container">
+          
             <Scrollbars>
               {item.map !== undefined &&
                 item.map((curItem, index) => {
@@ -123,24 +141,27 @@ const Contextcart = () => {
                 })}
             </Scrollbars>
           </div>
-        </div>
-
+        </div>:<div></div>
+        }
+       
         <div className="card-total">
           <h3>
             Booking Total:<span>${totalAmount}</span>
           </h3>
-          {/* <LinkContainer to="/payment">
-            <NavLink>
-              <button>PAY</button>
-            </NavLink>
-          </LinkContainer> */}
-
+          
+          { localStorage.getItem("cnt")==1?
           <LinkContainer to="/order">
             <NavLink>
-              <button>CHECKOUT</button>
+              <button>CheckOut</button>
             </NavLink>
-          </LinkContainer>
-        </div>
+          </LinkContainer> :
+          <LinkContainer to="/home1">
+            <NavLink>
+              
+              <button>CheckOut</button>
+            </NavLink>
+          </LinkContainer>}
+        </div> 
       </section>
     </>
   );

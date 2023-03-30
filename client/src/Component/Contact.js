@@ -42,7 +42,7 @@ const Contact = () => {
     <div class="ll1">
   <div class="ll2">
     <form >
-      <h1 style={{fontFamily:'cursive'}}>CONTACT US!</h1>
+      <h1 style={{fontFamily:'cursive'}}>FEEDBACK FORM!</h1>
       <div class="ll3">
         <label for="name" class="ll4"> Full Name </label>
         <input

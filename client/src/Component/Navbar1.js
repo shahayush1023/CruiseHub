@@ -67,26 +67,32 @@ function NavScrollExample() {
           </Nav>
           {loginuser ? (
             <Nav>
-              <h3 style={{ color: "white" }}>WELCOME {loginuser.name}</h3>
+              <h5 style={{ color:'white',fontFamily:'cursive',fontSize:'20px',fontWeight:'200',marginTop:'4px' }}>HELLO {loginuser.name} </h5>
             </Nav>
           ) : (
             <Nav>
-              <LinkContainer to="/signup">
+              {/* <LinkContainer to="/signup">
                 <Nav.Link>
-                  <span style={{ color: "white" }}>Sign Up</span>
+                  <span style={{ color: "white",marginTop:'4px' }}>Sign Up</span>
                 </Nav.Link>
-              </LinkContainer>
+              </LinkContainer> */}
               <LinkContainer to="/login">
                 <Nav.Link>
-                  <span style={{ color: "white" }}>Log In</span>
+                  <span style={{ color: "white",marginTop:'4px',fontFamily:'cursive',fontSize:'25px' }}>Sign In</span>
                 </Nav.Link>
               </LinkContainer>
             </Nav>
           )}
 
-          <LinkContainer to="/logout">
+          <LinkContainer to="/logout" >
             <Nav.Link>
-              <span style={{ color: "white" }}>LogOut</span>
+              {loginuser?(
+              <span style={{ color: "white",marginTop:'4px'}}>
+              
+              LogOut</span> ):
+
+              <span style={{ color: "white" }}></span>
+              }
             </Nav.Link>
           </LinkContainer>
         </Navbar.Collapse>

@@ -132,3 +132,16 @@ export const getuser = async (id) => {
     return { error: error.message || error };
   }
 };
+export const createPayment = async (obj, conf) => {
+  try {
+    const { data } = await client.post(`payment/createPayment`, obj, conf);
+    console.log(data);
+    return data;
+  } catch (error) {
+    const { response } = error;
+    if (response?.data) {
+      return response.data;
+    }
+    return { error: error.message || error };
+  }
+};

@@ -130,7 +130,7 @@
   }
   .items-info {
     width: 100%;
-    height: 11rem;
+    height: 5rem;
     /* background-color: lavender; */
     margin: auto;
     display: grid;
@@ -138,8 +138,8 @@
   }
   
   .items-info .product-img img {
-    width: 16rem;
-    height: 11rem;
+    width: 10rem;
+    height: 6rem;
     filter: drop-shadow(0rem 0.4rem 1rem #f1f7ff);
     border-radius: 1rem;
   }

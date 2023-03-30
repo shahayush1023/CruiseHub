@@ -79,14 +79,8 @@ const Login = () => {
           </div>
           <div className="form-group mt-3">
             <div className="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                className="custom-control-input"
-                id="customCheck1"
-              />
-              <label className="custom-control-label" htmlFor="customCheck1">
-                Remember me
-              </label>
+              
+              
             </div>
           </div>
           <div className="d-grid gap-2 mt-3">
@@ -98,9 +92,7 @@ const Login = () => {
               Submit
             </button>
           </div>
-          <p className="forgot-password text-right mt-2">
-            Forgot <a href="#">password?</a>
-          </p>
+         
 
           <p className="signup text-center mt-2">
             Don't Have an Account?
