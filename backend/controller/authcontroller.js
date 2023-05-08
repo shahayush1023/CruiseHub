@@ -168,6 +168,7 @@ module.exports.isAuthorised = function isAuthorised(role) {
     }
   };
 };
+
 module.exports.forgetpassword = async function forgetpassword(req, res) {
   let { email } = req.body;
   try {

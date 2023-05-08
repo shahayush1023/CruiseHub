@@ -27,12 +27,11 @@ const Signup = () => {
     const { name, email, password, cpassword } = user;
 
     const data = await signup(user, config);
-    
-    
+
     console.log(data);
     if (data.message === "user signed up") {
       window.alert("succesfully registration");
-      navigate("/");
+      navigate("/login");
     } else {
       window.alert("invalid");
     }
